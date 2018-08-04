@@ -14,6 +14,7 @@
       :chatImageUrl="agentProfile.imageUrl"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
+      :alwaysScrollToBottom="alwaysScrollToBottom"
     />
     <UserInput
       :baseUrl="baseUrl"
@@ -80,6 +81,10 @@ export default {
     },
     colors: {
       type: Object,
+      required: true
+    },
+    alwaysScrollToBottom: {
+      type: Boolean,
       required: true
     }
   },

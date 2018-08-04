@@ -19,6 +19,7 @@
       :placeholder="placeholder"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
+      :alwaysScrollToBottom="alwaysScrollToBottom"
     />
   </div>
 </template>
@@ -117,6 +118,10 @@ export default {
           }
         }
       }
+    },
+    alwaysScrollToBottom: {
+      type: Boolean,
+      default: () => false
     }
   },
   data () {
