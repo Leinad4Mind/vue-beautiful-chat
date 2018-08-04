@@ -1,13 +1,18 @@
 <template>
   <div class="sc-message">
-    <div class="sc-message--content" :class="{sent: message.author === 'me', received: message.author !== 'me'}">
-      <div class="sc-message--avatar" :style="{
+    <div class="sc-message--content" :class="{
+        sent: message.author === 'me',
+        received: message.author === 'them',
+        system: message.type === 'system'
+      }">
+      <div v-if="message.type !== 'system'" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }"></div>
       <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" />
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :baseUrl="baseUrl" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
+      <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
     </div>
   </div>
 </template>
@@ -17,6 +22,7 @@ import TextMessage from './TextMessage.vue'
 import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
+import SystemMessage from './SystemMessage.vue'
 
 export default {
   data () {
@@ -28,7 +34,8 @@ export default {
     TextMessage,
     FileMessage,
     EmojiMessage,
-    TypingMessage
+    TypingMessage,
+    SystemMessage
   },
   props: {
     baseUrl: {
@@ -82,6 +89,10 @@ export default {
 
 .sc-message--content.sent {
   justify-content: flex-end;
+}
+
+.sc-message--content.system {
+  justify-content: center;
 }
 
 .sc-message--content.sent .sc-message--avatar {
