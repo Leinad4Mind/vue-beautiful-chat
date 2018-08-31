@@ -1,6 +1,6 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
-    <img class="sc-header--img" :src="imageUrl" alt="" />
+    <img class="sc-header--img" :src="imageUrl" alt="" v-if="imageUrl" />
     <div class="sc-header--team-name"> {{teamName}} </div>
     <div class="sc-header--close-button" @click="onClose">
       <img :src="baseUrl + 'close-icon.png'" alt="" />
@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+
 export default {
   props: {
     baseUrl: {
@@ -16,7 +17,7 @@ export default {
     },
     imageUrl: {
       type: String,
-      required: true
+      default: ''
     },
     teamName: {
       type: String
