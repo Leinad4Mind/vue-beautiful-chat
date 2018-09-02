@@ -12,7 +12,7 @@
       :messageList="messageList"
       :onUserInputSubmit="onMessageWasSent"
       :participants="participants"
-      :title="title"
+      :title="chatWindowTitle"
       :titleImageUrl="titleImageUrl"
       :isOpen="isOpen"
       :onClose="close"
@@ -60,7 +60,7 @@ export default {
     },
     title: {
       type: String,
-      default: () => 'Chat'
+      default: () => ''
     },
     titleImageUrl: {
       type: String,
@@ -134,9 +134,17 @@ export default {
       default: () => false
     }
   },
-  data () {
-    return {
+  computed: {
+    chatWindowTitle() {
+      if (this.title !== '') {
+        return title
+      }
 
+      if (this.participants.length > 1) {
+        return 'You, ' + this.participants[0].name + ' & others'
+      } else {
+        return 'You & ' + this.participants[0].name
+      }
     }
   },
   components: {
