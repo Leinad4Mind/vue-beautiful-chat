@@ -1,7 +1,7 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
     <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :baseUrl="baseUrl" :colors="colors" />
-    <Message v-show="showTypingIndicator" :message="{author: 'them', type: 'typing'}" :chatImageUrl="chatImageUrl" :colors="colors" :key="idx" />
+    <Message v-show="showTypingIndicator !== ''" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" :key="idx" />
   </div>
 </template>
 <script>
@@ -34,8 +34,8 @@ export default {
       }
     },
     showTypingIndicator: {
-      type: Boolean,
-      default: () => false
+      type: String,
+      required: true
     },
     colors: {
       type: Object,
