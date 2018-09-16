@@ -115,7 +115,7 @@ export default {
 
 .sc-message--meta {
   font-size: xx-small;
-  margin-bottom: -10px;
+  margin-bottom: 0px;
   color: white;
   text-align: center;
 }
@@ -127,7 +127,7 @@ export default {
 }
 
 .sc-message--text {
-  padding: 17px 20px;
+  padding: 5px 20px;
   border-radius: 6px;
   font-weight: 300;
   font-size: 14px;
